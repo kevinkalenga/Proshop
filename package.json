@@ -1,0 +1,15 @@
+{
+  "name": "proshop_project",
+  "version": "1.0.0",
+  "description": "MERN stack application",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Kevin Web",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
