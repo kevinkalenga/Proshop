@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useDispatch} from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
+import { FaTrash } from "react-icons/fa";
 
 
 
@@ -101,6 +102,11 @@ const ProductScreen = () => {
                               )
                             )}
                           </Form.Control>
+                        </Col>
+                        <Col md={2}>
+                           <Button type="button">
+                               <FaTrash />
+                           </Button>
                         </Col>
                       </Row>
                     </ListGroup.Item>
