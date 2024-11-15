@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap';
 import {FaTrash} from 'react-icons/fa';
 import Message from '../components/Message';
-import { addToCart} from '../slices/cartSlice';
+import { addToCart, removeFromCart} from '../slices/cartSlice';
 
 const CartScreen = () => {
   
@@ -21,6 +21,10 @@ const CartScreen = () => {
    
    const checkoutHandler = () => {
     navigate('/login?redirect=/shipping');
+  };
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
   };
   
    return (
@@ -62,7 +66,7 @@ const CartScreen = () => {
                     
                     </Col>
                     <Col md={2}>
-                       <Button type='button' variant='light'>
+                       <Button type='button' variant='light' onClick={() => removeFromCartHandler(item._id)}>
                           <FaTrash />
                        </Button>
                          
