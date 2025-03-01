@@ -16,7 +16,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       totalPrice,
    } = req.body;
 
-   if(orderItems && orderItems.length === 0) {
+   if (orderItems && orderItems.length === 0) {
       res.status(400);
       throw new Error('No order items')
    } else {
@@ -24,7 +24,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
          orderItems: orderItems.map((x) => ({
             ...x,
             product: x._id,
-            _id:undefined
+            _id: undefined
          })),
          user: req.user._id,
          shippingAddress,
@@ -43,17 +43,17 @@ const addOrderItems = asyncHandler(async (req, res) => {
 // @route   Get /api/orders/myorders
 // @access  private
 const getMyOrders = asyncHandler(async (req, res) => {
- const orders = await Order.find({user: req.user._id});
- res.status(200).json(orders);
+   const orders = await Order.find({ user: req.user._id });
+   res.status(200).json(orders);
 })
 // @desc    Get logged in user orders
 // @route   Get /api/orders/myorders
 // @access  private
 const getOrderById = asyncHandler(async (req, res) => {
    const order = await Order.findById(req.params.id).populate('user', 'name email');
-   if(order) {
+   if (order) {
       res.status(200).json(order);
-     
+
    } else {
       res.status(404);
       throw new Error('Order not found')
@@ -65,7 +65,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 const updateOrderTopaid = asyncHandler(async (req, res) => {
    const order = await Order.findById(req.params.id);
 
-   if(order) {
+   if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();
       order.paymentResult = {
@@ -89,19 +89,20 @@ const updateOrderTopaid = asyncHandler(async (req, res) => {
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
    res.send('update order to delivered')
 })
-// @desc    Update order to deliver
-// @route   Get /api/orders/:id/deliver
-// @access  private
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
 const getOrders = asyncHandler(async (req, res) => {
-   res.send('get all orders')
-})
+   const orders = await Order.find({}).populate('user', 'id name');
+   res.status(200).json(orders);
+});
 
 
 export {
-    addOrderItems,
-    getMyOrders,
-    getOrderById,
-    updateOrderTopaid,
-    updateOrderToDelivered,
-    getOrders
+   addOrderItems,
+   getMyOrders,
+   getOrderById,
+   updateOrderTopaid,
+   updateOrderToDelivered,
+   getOrders
 }
