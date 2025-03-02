@@ -17,6 +17,7 @@ import reportWebVitals from './reportWebVitals';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
+import ProductListScreen from './screens/admin/ProductListScreen';
 import OrderListScreen from './screens/admin/OrderListScreen'
 import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -49,7 +50,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path='' element={<AdminRoute />} >
         <Route path='/admin/orderList' element={<OrderListScreen />} />
-
+        <Route path='/admin/productlist' element={<ProductListScreen />} />
       </Route>
 
     </Route>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Button, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
@@ -56,17 +56,17 @@ const OrderScreen = () => {
       }
    }, [erroPayPal, loadingPayPal, order, paypal, paypalDispatch])
 
-   // function onApprove(data, actions) {
-   //    return actions.order.capture().then(async function (details) {
-   //       try {
-   //          await payOrder({ orderId, details });
-   //          refetch();
-   //          toast.success('Order is paid');
-   //       } catch (err) {
-   //          toast.error(err?.data?.message || err.error);
-   //       }
-   //    });
-   // }
+   function onApprove(data, actions) {
+      return actions.order.capture().then(async function (details) {
+         try {
+            await payOrder({ orderId, details });
+            refetch();
+            toast.success('Order is paid');
+         } catch (err) {
+            toast.error(err?.data?.message || err.error);
+         }
+      });
+   }
 
    // TESTING ONLY! REMOVE BEFORE PRODUCTION
    // async function onApproveTest() {
@@ -239,7 +239,7 @@ const OrderScreen = () => {
                                  <div>
                                     <PayPalButtons
                                        createOrder={createOrder}
-                                       // onApprove={onApprove}
+                                       onApprove={onApprove}
                                        onError={onError}
                                     ></PayPalButtons>
                                  </div>
