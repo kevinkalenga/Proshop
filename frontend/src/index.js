@@ -18,6 +18,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
 
+import { HelmetProvider } from 'react-helmet-async';
 import UserEditScreen from './screens/admin/UserEditScreen';
 import UserListScreen from './screens/admin/UserListScreen'
 import ProductListScreen from './screens/admin/ProductListScreen';
@@ -77,11 +78,14 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PayPalScriptProvider deferLoading={true}>
-        <RouterProvider router={router} />
-      </PayPalScriptProvider>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <PayPalScriptProvider deferLoading={true}>
+          <RouterProvider router={router} />
+        </PayPalScriptProvider>
+      </Provider>
+    </HelmetProvider>
+
   </React.StrictMode>
 );
 

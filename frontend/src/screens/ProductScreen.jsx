@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
 import { FaTrash } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import Meta from '../components/Meta';
 
 
 
@@ -73,6 +74,7 @@ const ProductScreen = () => {
           <Message variant="danger">{error?.data?.message || error.error}</Message>
         ) : (
           <>
+            <Meta title={product.name} description={product.description} />
             <Row>
               <Col md={5}>
                 <Image src={product.image} alt={product.name} fluid />
