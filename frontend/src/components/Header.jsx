@@ -6,7 +6,8 @@ import logo from '../assets/logo.png';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
-// import { resetCart } from '../slices/cartSlice';
+import SearchBox from './SearchBox';
+import { resetCart } from '../slices/cartSlice';
 
 
 
@@ -25,7 +26,7 @@ const Header = () => {
       dispatch(logout());
       // NOTE: here we need to reset cart state for when a user logs out so the next
       // user doesn't inherit the previous users cart and shipping
-      // dispatch(resetCart());
+      dispatch(resetCart());
       navigate('/login');
     } catch (err) {
       console.error(err);
@@ -53,7 +54,7 @@ const Header = () => {
           <NavbarToggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className='ms-auto'>
-
+              <SearchBox />
               <Nav.Link href='/cart'>
                 <FaShoppingCart />Cart
                 {cartItems.length > 0 && (

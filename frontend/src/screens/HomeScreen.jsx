@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
@@ -15,6 +15,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      {keyword && <Link to="/" className='btn btn-light mb-4'>Go Back</Link>}
       {
         isLoading ? (
           <Loader />
