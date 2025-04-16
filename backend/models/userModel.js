@@ -25,13 +25,16 @@ const userSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
+
+// this.password is the pwd which is store in the database
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)
 }
 
+// pre mean sthing we want to do before saving (ex: hashing the pwd before saving)
 userSchema.pre('save', async function (next) {
-    if(!this.isModified('password')) {
-        
+    if (!this.isModified('password')) {
+
         next();
     }
 

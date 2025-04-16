@@ -55,7 +55,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className='ms-auto'>
               <SearchBox />
-              <Nav.Link href='/cart'>
+              <Nav.Link to='/cart'>
                 <FaShoppingCart />Cart
                 {cartItems.length > 0 && (
                   <Badge pill bg='success' style={{ marginLeft: '5px' }}>
