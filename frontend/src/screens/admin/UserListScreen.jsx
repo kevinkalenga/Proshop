@@ -1,3 +1,4 @@
+import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { FaTimes, FaTrash, FaEdit, FaCheck } from 'react-icons/fa';

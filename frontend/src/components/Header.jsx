@@ -1,3 +1,4 @@
+import React from 'react';
 import { Navbar, Nav, Container, NavDropdown, Badge, NavbarToggle } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap'
